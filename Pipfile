@@ -8,7 +8,10 @@ verify_ssl = true
 [packages]
 flask = "*"
 gunicorn = "*"
-iqoptionapi = {editable = true, git = "https://github.com/Lu-Yi-Hsun/iqoptionapi.git", ref = "master"}
+flask-cors = "*"
+pytest = "*"
+python-dateutil = "*"
+iqoptionapi = {editable = true, git = "https://github.com/mbernardes19/iqoptionapi.git"}
 
 [requires]
 python_version = "3.8"
