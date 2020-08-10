@@ -86,7 +86,7 @@ def process_pairs():
         candles2 = iqoption.get_candles('USD'+toCurrency,60,2,time.time())
         forex2 = candles2[0]['close']
         print(float(valueInDolars) * forex2)
-        return jsonify({"hasForexData": False, "forex": forex2, "value": float(valueInDolars) * forex2})
+        return jsonify({"hasForexData": True, "forex": forex2, "value": float(valueInDolars) * forex2})
     if 'USD'+fromCurrency in content and toCurrency+'USD' in content:
         print('USD'+fromCurrency)
         print(toCurrency+'USD')
@@ -98,7 +98,7 @@ def process_pairs():
         candles2 = iqoption.get_candles(toCurrency+'USD',60,2,time.time())
         forex2 = candles2[0]['close']
         print(float(valueInDolars) / forex2)
-        return jsonify({"hasForexData": False, "forex": forex2, "value": float(valueInDolars) / forex2})
+        return jsonify({"hasForexData": True, "forex": forex2, "value": float(valueInDolars) / forex2})
     if 'USD'+toCurrency in content and fromCurrency+'USD' in content:
         print('USD'+toCurrency)
         print(fromCurrency+'USD')
@@ -107,7 +107,7 @@ def process_pairs():
         valueInDolars = float(value) * forex
         candles2 = iqoption.get_candles('USD'+toCurrency,60,2,time.time())
         forex2 = candles2[0]['close']
-        return jsonify({"hasForexData": False, "forex": forex2, "value": float(valueInDolars) * forex2})
+        return jsonify({"hasForexData": True, "forex": forex2, "value": float(valueInDolars) * forex2})
             
 def timestamp_converter(x):
     hora = datetime.strptime(datetime.utcfromtimestamp(x).strftime('%Y-%m-%d %H:%M:%S'), '%Y-%m-%d %H:%M:%S')
@@ -153,7 +153,7 @@ def get_history():
 
     dates = list(map(lambda x: timestamp_converter(x['to']), candles))
     data = list(map(lambda x: x['close'], candles))
-    return jsonify({"values": data, "dates": dates})
+    return jsonify({"values": data, "dates": dates, "pair": pair})
     
 
 def get_forex(fromCurrency, toCurrency, value):
