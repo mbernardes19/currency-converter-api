@@ -136,6 +136,12 @@ def get_history():
         print('TO/FROM')
         print(toCurrency+fromCurrency)
         pair = toCurrency+fromCurrency
+    if 'USD'+fromCurrency in content and 'USD'+toCurrency in content:
+        pair = 'USD'+toCurrency
+    if 'USD'+fromCurrency in content and toCurrency+'USD' in content:
+        pair = toCurrency+'USD'
+    if 'USD'+toCurrency in content and fromCurrency+'USD' in content:
+        pair = fromCurrency+'USD'
 
     candles = ''
     if (period == 'month'):
